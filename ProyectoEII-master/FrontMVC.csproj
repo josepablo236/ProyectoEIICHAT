@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Chat\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\User\Login - Copy.cshtml" />
+    <Content Remove="Views\Login\Login.cshtml" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Black.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Light.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Remove="wwwroot\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Remove="wwwroot\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Remove="wwwroot\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Laboratorio2">
+      <HintPath>..\Laboratorio2.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\Laboratorio02Cifrado-master\Laboratorio2\Laboratorio2\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
