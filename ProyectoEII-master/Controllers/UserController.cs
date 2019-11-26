@@ -19,7 +19,7 @@ namespace ProyectoEII.Controllers
         public string cadena;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<UserController> _logger;
-       //. static HttpClient client = new HttpClient();
+        //. static HttpClient client = new HttpClient();
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
@@ -33,7 +33,7 @@ namespace ProyectoEII.Controllers
         [HttpPost]
         public ActionResult Login(UserViewModel newuser)
         {
-            if(newuser.User_ == null || newuser.Password == null)
+            if (newuser.User_ == null || newuser.Password == null)
             {
                 ModelState.AddModelError("User_", "Los datos no pueden ser nulos");
             }
@@ -48,9 +48,9 @@ namespace ProyectoEII.Controllers
                 List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
                 string passencoded = string.Join(",", passencoded1);
                 newuser.Password = passencoded;
-                
-                cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2,99) ;
-                
+
+                cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "|currenttoken" + rn.Next(2, 99);
+
                 HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -58,7 +58,7 @@ namespace ProyectoEII.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "404. Usuario no encontrado");
+                    ModelState.AddModelError(string.Empty, "404. Credenciales incorrectas");
                 }
             }
             return View(newuser);
@@ -85,9 +85,9 @@ namespace ProyectoEII.Controllers
             List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
             string passencoded = string.Join(",", passencoded1);
             newuser.Password = passencoded;
-            
+
             cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
-            
+
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -137,6 +137,7 @@ namespace ProyectoEII.Controllers
 
         public IActionResult Chat()
         {
+
             return View();
         }
         public async Task StartTimer(CancellationToken cancellationToken)
@@ -172,4 +173,5 @@ namespace ProyectoEII.Controllers
                 }
             });
         }
+    }
 }
