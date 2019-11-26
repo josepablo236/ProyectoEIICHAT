@@ -54,7 +54,7 @@ namespace ProyectoEII.Controllers
                 HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return Redirect("Chat/Chat");
+                    return (RedirectToAction("Chat", "Chat", new { emisor = newuser.User_}));
                 }
                 else
                 {

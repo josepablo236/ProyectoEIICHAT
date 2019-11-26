@@ -12,16 +12,18 @@ namespace FrontMVC.Controllers
         {
             return View();
         }
-        public IActionResult Chat()
+        public IActionResult Chat(string emisor)
         {
             List<UserViewModel> userslist;
             MessagesUsersViewModel usermessages;
+            MessagesViewModel messages = new MessagesViewModel();
             HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User").Result;
             if (response.IsSuccessStatusCode)
             {
                 userslist = response.Content.ReadAsAsync<List<UserViewModel>>().Result;
                 usermessages = new MessagesUsersViewModel();
                 usermessages.Users = userslist;
+                usermessages.ActualUser = emisor;
             }
             else
             {
@@ -29,7 +31,7 @@ namespace FrontMVC.Controllers
             }
             return View(usermessages);
         }
-        public IActionResult Chatear(string user)
+        public IActionResult Chatear(string emisor, string receptor)
         {
             return RedirectToAction("Chat");
         }
