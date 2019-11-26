@@ -38,23 +38,24 @@ namespace UsersAPI.Controllers
             if (ModelState.IsValid)
             {
                 _userService.Post(_user);
-                return CreatedAtRoute("userCreada", new { id = _user.Id }, _user);
+                return StatusCode(201);
             }
             return BadRequest(ModelState);
         }
 
         // PUT: api/Pizza/5
-        [HttpPut("{id}")]
-        //public IActionResult Put(string _user, User userMod)
-        //{
-        //    //var pizza = _userService.GetUs(_user);
-        //    //if (pizza == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-        //    //_userService.Update(_user, userMod);
-        //    //return Ok(userMod);
-        //}
+        [HttpPut]
+        public IActionResult Put(User userMod)
+        {
+            var user = _userService.GetUser(userMod.User_);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            userMod.Id = user.Id;
+            _userService.Update(user.Id, userMod);
+            return Ok(user);
+        }
 
         // GET: api/Pizza
         [HttpGet]
