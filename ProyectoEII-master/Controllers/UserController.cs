@@ -7,11 +7,16 @@ using Laboratorio2.Controllers;
 using Laboratorio2.Models;
 using System.Net.Http;
 using FrontMVC;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ProyectoEII.Controllers
 {
     public class UserController : Controller
     {
+        public string currenttoken;
+        Random rn = new Random();
+        public string cadena;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<UserController> _logger;
        //. static HttpClient client = new HttpClient();
@@ -43,7 +48,9 @@ namespace ProyectoEII.Controllers
                 List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
                 string passencoded = string.Join(",", passencoded1);
                 newuser.Password = passencoded;
-                var cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString();
+                
+                cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2,99) ;
+                
                 HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -62,6 +69,7 @@ namespace ProyectoEII.Controllers
             UserViewModel newuser = new UserViewModel();
             newuser.User_ = user;
             newuser.Password = pass;
+
             return View(newuser);
         }
 
@@ -77,7 +85,9 @@ namespace ProyectoEII.Controllers
             List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
             string passencoded = string.Join(",", passencoded1);
             newuser.Password = passencoded;
-
+            
+            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
+            
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -111,6 +121,8 @@ namespace ProyectoEII.Controllers
             string passencoded = string.Join(",", passencoded1);
             newuser.Password = passencoded;
 
+            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
+
             HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -127,6 +139,37 @@ namespace ProyectoEII.Controllers
         {
             return View();
         }
+        public async Task StartTimer(CancellationToken cancellationToken)
+        {
 
-    }
+            await Task.Run(async () =>
+            {
+
+                while (true)
+                {
+                    if (cadena != null)
+                    {
+                        HttpResponseMessage response = GlobalVariables.WebApiClientJWT.GetAsync("JWT/" + cadena).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            if (currenttoken == null)
+                            {
+                                currenttoken = (response.Content.ReadAsAsync<string>().Result);
+
+                            }
+                            else
+                            {
+                                if (currenttoken != (response.Content.ReadAsAsync<string>().Result))
+                                {
+                                    //matamos la sesión jajajaja                                 
+                                }
+                            }
+                        }
+                    }
+                    await Task.Delay(10000, cancellationToken);
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+                }
+            });
+        }
 }
