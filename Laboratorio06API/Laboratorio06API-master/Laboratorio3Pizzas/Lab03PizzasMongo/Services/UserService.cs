@@ -22,15 +22,17 @@ namespace UsersAPI.Services
         {
             return collection.Find(x => true).ToList();
         }
-        //Obtener un deacuerdo a su user
+        //Get a user with username and password
         public User GetUs(string password, string _user) => collection.Find<User>(x => x.Password == password && x.User_ == _user).FirstOrDefault();
-        //Crear nuevo user
+        //Get a user with username
+        public User GetUser(string _user) => collection.Find<User>(x => x.User_ == _user).FirstOrDefault();
+        //Create a new user
         public User Post(User user)
         {
             collection.InsertOne(user);
             return user;
         }
         //Modificar una pizza deacuerdo al id
-        public void Update(string _user, User userMod) => collection.ReplaceOne(x => x.User_ == userMod.User_, userMod);
+        public void Update(string id, User userMod) => collection.ReplaceOne(x => x.Id == id, userMod);
     }
 }
