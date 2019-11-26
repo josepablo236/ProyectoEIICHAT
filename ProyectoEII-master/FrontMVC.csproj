@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -41,9 +42,6 @@
   <ItemGroup>
     <Reference Include="Laboratorio2">
       <HintPath>..\Laboratorio2.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\Laboratorio02Cifrado-master\Laboratorio2\Laboratorio2\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
