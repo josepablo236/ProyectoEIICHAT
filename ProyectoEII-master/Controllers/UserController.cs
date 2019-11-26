@@ -54,7 +54,7 @@ namespace ProyectoEII.Controllers
                 HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Chat");
+                    return Redirect("Chat/Chat");
                 }
                 else
                 {
@@ -135,11 +135,7 @@ namespace ProyectoEII.Controllers
             return View(newuser);
         }
 
-        public IActionResult Chat()
-        {
-
-            return View();
-        }
+       
         public async Task StartTimer(CancellationToken cancellationToken)
         {
 

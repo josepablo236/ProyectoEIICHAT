@@ -3,10 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Chat\" />
-  </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\User\Login - Copy.cshtml" />
     <Content Remove="Views\Login\Login.cshtml" />
