@@ -9,6 +9,7 @@ namespace FrontMVC.Controllers
     public class ChatController : Controller
     {
         public static string receptorglobal;
+        public static string emisorglobal;
         public IActionResult Index()
         {
             return View();
@@ -24,6 +25,7 @@ namespace FrontMVC.Controllers
                 userslist = response.Content.ReadAsAsync<List<UserViewModel>>().Result;
                 usermessages.Users = userslist;
                 usermessages.ActualUser = emisor;
+                emisorglobal = emisor;
             }
             else
             {
@@ -50,7 +52,7 @@ namespace FrontMVC.Controllers
         public IActionResult SendMessage(string emisor, string Message)
         {
             MessagesViewModel messagemodel = new MessagesViewModel();
-            messagemodel.Emisor = emisor;
+            messagemodel.Emisor = emisorglobal;
             messagemodel.Receptor = receptorglobal;
             messagemodel.Message = Message;
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;

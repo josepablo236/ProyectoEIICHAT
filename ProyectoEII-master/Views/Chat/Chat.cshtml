@@ -89,14 +89,16 @@
                             }
                         }
                     </div>
-                    <div class="row container" style="margin-left: 3px;">
-                                <div class="col-md-9 col-sm-9 less_padding">
-                                    <textarea class="form-control" rows="1" id="Message"></textarea>
-                                </div>
-                                <div class="col-md-3 col-sm-3 less_padding">
-                                    <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage" onclick="location.href='@Url.Action("SendMessage", "Chat", new { emisor = Model.ActualUser })'">Send Message</button>
-                                </div>
-                    </div>
+                    <form action="/Chat/SendMessage">
+                        <div class="row container" style="margin-left: 3px;">
+                            <div class="col-md-9 col-sm-9 less_padding">
+                                <textarea class="form-control mytextarea" rows="1" id="Message" name="Message"></textarea>
+                            </div>
+                            <div class="col-md-3 col-sm-3 less_padding">
+                                <button type="submit" class="btn btn-info pull-right" style=" position: absolute;" id="SendMessage">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
