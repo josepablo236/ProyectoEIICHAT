@@ -17,7 +17,7 @@ namespace UsersAPI.Services
             collection = database.GetCollection<Message>(settings.MessageCollectionName);
         }
        
-        public Message GetMessage(string emisor, string receptor) => collection.Find<Message>(x => x.Emisor == emisor && x.Receptor == receptor).FirstOrDefault();
+        public List<Message> GetMessage(string emisor, string receptor) => collection.Find<Message>(x => x.Emisor == emisor && x.Receptor == receptor).ToList();
         //Create a new message
         public Message PostMessage(Message message)
         {

@@ -25,12 +25,12 @@ namespace UsersAPI.Controllers
             var variables = messageVariables.Split('|');
             var emisor = variables[0];
             var receptor = variables[1];
-            var message = _messageService.GetMessage(emisor, receptor);
-            if (message == null)
+            var messageList = _messageService.GetMessage(emisor, receptor);
+            if (messageList.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(message);
+            return Ok(messageList);
         }
 
         // POST: api/Message

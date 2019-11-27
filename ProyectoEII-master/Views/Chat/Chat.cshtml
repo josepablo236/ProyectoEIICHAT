@@ -66,7 +66,7 @@
                                     @Html.DisplayFor(modelItem => item.User_)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Chatear", "Chatear", new {emisor = Model.ActualUser , receptor = item.User_})
+                                    @Html.ActionLink("Chatear", "Chatear", "Chat", new { emisor = Model.ActualUser, receptor = item.User_ })
                                 </td>
                             </tr>
                         }
@@ -81,21 +81,26 @@
                     <input type="hidden" value="" id="currentGroup">
                     <div class="chat_body">
                         <!-- <AQUI AGREGAMOS MENSAJESHello, </div> -->
-
+                        @if (Model.Messages != null && Model.Messages.Count > 0)
+                        {
+                            @foreach (var item in Model.Messages)
+                            {
+                                @Html.DisplayFor(modelItem => item.Message)
+                            }
+                        }
                     </div>
                     <div class="row container" style="margin-left: 3px;">
-                        <div class="col-md-9 col-sm-9 less_padding">
-                            <textarea class="form-control" rows="1" id="Message"></textarea>
-                        </div>
-                        <div class="col-md-3 col-sm-3 less_padding">
-                            <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage">Send Message</button>
-                        </div>
+                                <div class="col-md-9 col-sm-9 less_padding">
+                                    <textarea class="form-control" rows="1" id="Message"></textarea>
+                                </div>
+                                <div class="col-md-3 col-sm-3 less_padding">
+                                    <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage" onclick="location.href='@Url.Action("SendMessage", "Chat", new { emisor = Model.ActualUser })'">Send Message</button>
+                                </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="CreateNewGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
