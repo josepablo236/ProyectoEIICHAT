@@ -16,5 +16,6 @@ namespace UsersAPI.Models
         public string Emisor { get; set; }
         public string Receptor { get; set; }
         public string File { get; set; }
+        public DateTime Date { get; set; }
     }
 }

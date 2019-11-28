@@ -31,7 +31,7 @@ namespace UsersAPI.Controllers
             return Ok(user);
         }
 
-        // POST: api/Pizza
+        // POST: api/User
         [HttpPost]
         public ActionResult<User> Post(User _user)
         {

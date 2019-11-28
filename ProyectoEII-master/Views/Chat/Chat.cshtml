@@ -50,93 +50,106 @@
     </style>
 </head>
 <body>
-    <h3 class="text-center">Welcome</h3>
-    <div class="container" style="background-color: grey;">
-        <div class="row">
-            <div class="col-md-2 less_padding">
-                <div class="col group_main">
-                    <div class="text-center"> Groups </div>
-                    <div clsss="row" style="height: 500px;overflow: scroll;" id="groups">
-                        <!-- <AQUI AGREGAMOS USUARIO, </div> -->
-                        <table class="table">
-                        @foreach (var item in Model.Users)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User_)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Chatear", "Chatear", "Chat", new { emisor = Model.ActualUser, receptor = item.User_ })
-                                </td>
-                            </tr>
-                        }
-                        </table>
+    @using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <h3 class="text-center">Welcome</h3>
+        <div class="container" style="background-color: grey;">
+            <div class="row">
+                <div class="col-md-2 less_padding">
+                    <div class="col group_main">
+                        <div class="text-center"> Groups </div>
+                        <div clsss="row" style="height: 500px;overflow: scroll;" id="groups">
+                            <!-- <AQUI AGREGAMOS USUARIO, </div> -->
+                            <table class="table">
+                                @foreach (var item in Model.Users)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.User_)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Chatear", "Chat", "Chat", new { emisor = Model.ActualUser, receptor = item.User_ })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
                         </div>
 
 
-                </div>
-            </div>
-            <div class="col-md-10 less_padding">
-                <div class="col-md-12 chat_main">
-                    <input type="hidden" value="" id="currentGroup">
-                    <div class="chat_body">
-                        <!-- <AQUI AGREGAMOS MENSAJESHello, </div> -->
-                        @if (Model.Messages != null && Model.Messages.Count > 0)
-                        {
-                            @foreach (var item in Model.Messages)
-                            {
-                                @Html.DisplayFor(modelItem => item.Message)
-                            }
-                        }
                     </div>
-                    <div class="row container" style="margin-left: 3px;">
+                </div>
+                <div class="col-md-10 less_padding">
+                    <div class="col-md-12 chat_main">
+                        <input type="hidden" value="" id="currentGroup">
+                        <div class="chat_body">
+                            <!-- <AQUI AGREGAMOS MENSAJESHello, </div> -->
+                            @if (Model.Messages != null && Model.Messages.Count > 0)
+                            {
+                                <table class="table">
+                                    @foreach (var item in Model.Messages)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Message_)
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                        </div>
+                        
+                            <div class="row container" style="margin-left: 3px;">
                                 <div class="col-md-9 col-sm-9 less_padding">
-                                    <textarea class="form-control" rows="1" id="Message"></textarea>
+                                    <textarea  rows="1" id="Message" name="Message"></textarea>
                                 </div>
                                 <div class="col-md-3 col-sm-3 less_padding">
-                                    <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage" onclick="location.href='@Url.Action("SendMessage", "Chat", new { emisor = Model.ActualUser })'">Send Message</button>
+                                    <button type="submit" class="btn btn-default"  style=" position: absolute;" id="SendMessage" >Send Message</button>
                                 </div>
+                            </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="CreateNewGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Group</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="CreateGroupForm">
-                        <div class="form-group">
-                            <label for="GroupName">Group Name</label>
-                            <input type="text" class="form-control" name="GroupName" id="GroupName" aria-describedby="emailHelp" placeholder="Group Name">
-                        </div>
-                        <label for="User">Add Users <br></label> <br>
-                        <div class="row">
-                            <!-- List users here -->
+    }
+        <!-- Modal -->
+        <div class="modal fade" id="CreateNewGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add New Group</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="CreateGroupForm">
+                            <div class="form-group">
+                                <label for="GroupName">Group Name</label>
+                                <input type="text" class="form-control" name="GroupName" id="GroupName" aria-describedby="emailHelp" placeholder="Group Name">
+                            </div>
+                            <label for="User">Add Users <br></label> <br>
+                            <div class="row">
+                                <!-- List users here -->
 
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="CreateNewGroupButton">Create Group</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="CreateNewGroupButton">Create Group</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
