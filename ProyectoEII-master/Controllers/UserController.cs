@@ -19,7 +19,6 @@ namespace ProyectoEII.Controllers
         public string cadena;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<UserController> _logger;
-        //. static HttpClient client = new HttpClient();
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;

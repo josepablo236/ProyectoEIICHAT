@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UsersAPI.Models;
 using UsersAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace UsersAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController : Controller
+    public class MessageController : ControllerBase
     {
         private readonly MessageService _messageService;
 
@@ -18,7 +17,7 @@ namespace UsersAPI.Controllers
             _messageService = service;
         }
 
-        // GET: api/User/5
+        // GET: api/Message/5
         [HttpGet("{messageVariables}", Name = "GetMessage")]
         public ActionResult<User> GetMessage (string messageVariables)
         {
@@ -35,7 +34,7 @@ namespace UsersAPI.Controllers
 
         // POST: api/Message
         [HttpPost]
-        public ActionResult<Message> PostMessage(Message message)
+        public ActionResult<Message> Post(Message message)
         {
             if (ModelState.IsValid)
             {

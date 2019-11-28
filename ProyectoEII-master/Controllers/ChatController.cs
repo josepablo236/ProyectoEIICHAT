@@ -3,68 +3,88 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoEII.Models;
 using System.Net.Http;
+using Microsoft.Extensions.Logging;
 
 namespace FrontMVC.Controllers
 {
     public class ChatController : Controller
     {
-        public static string receptorglobal;
-        public static string emisorglobal;
+        private static readonly HttpClient client = new HttpClient();
+        private readonly ILogger<ChatController> _logger;
+        public ChatController(ILogger<ChatController> logger)
+        {
+            _logger = logger;
+        }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Chat(string emisor)
+        public IActionResult Chat(string emisor, string receptor, string Message)
         {
             List<UserViewModel> userslist;
             MessagesUsersViewModel usermessages = new MessagesUsersViewModel();
             MessagesViewModel messages = new MessagesViewModel();
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User").Result;
-            if (response.IsSuccessStatusCode)
+            if (Message == null)
             {
-                userslist = response.Content.ReadAsAsync<List<UserViewModel>>().Result;
-                usermessages.Users = userslist;
-                usermessages.ActualUser = emisor;
-                emisorglobal = emisor;
+                HttpResponseMessage responseUsers = GlobalVariables.WebApiClient.GetAsync("User").Result;
+                if (responseUsers.IsSuccessStatusCode)
+                {
+                    userslist = responseUsers.Content.ReadAsAsync<List<UserViewModel>>().Result;
+                    usermessages.Users = userslist;
+                    usermessages.ActualUser = emisor;
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún usuario");
+                }
+                if (receptor != null)
+                {
+                    var cadena = emisor + "|" + receptor;
+                    HttpResponseMessage responseMessages = GlobalVariables.WebApiClient.GetAsync("Message/" + cadena.ToString()).Result;
+                    if (responseMessages.IsSuccessStatusCode)
+                    {
+                        usermessages.Messages = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
+                    }
+                }
+                return View(usermessages);
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
+                var status = SendMessage(Message, emisor, receptor);
+                if (status == true)
+                {
+                    return RedirectToAction("Chat", new { emisor = emisor, receptor = receptor });
+                }
+                else
+                { return View(usermessages); 
+                }
             }
-            return View(usermessages);
+          
         }
-        public IActionResult Chatear(string emisor, string receptor)
-        {
-            receptorglobal = receptor;
-            MessagesUsersViewModel messagemodel = new MessagesUsersViewModel();
-            var cadena = emisor + "|" + receptor;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Message/" + cadena.ToString()).Result;
-            if(response.IsSuccessStatusCode)
-            {
-                messagemodel.Messages = response.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
-            }
-            return RedirectToAction("Chat", new { emisor = emisor });
-        }
-        public IActionResult SendMessage(string emisor, string Message)
+
+
+        public bool SendMessage(string Message, string emisor, string receptor)
         {
             MessagesViewModel messagemodel = new MessagesViewModel();
-            messagemodel.Emisor = emisorglobal;
-            messagemodel.Receptor = receptorglobal;
-            messagemodel.Message = Message;
+            messagemodel.Emisor = emisor;
+            messagemodel.Receptor = receptor;
+            //Cifrar mensaje y asignarlo a la variable del modelo
+            messagemodel.Message_ = Message;
+            messagemodel.Date = DateTime.Now;
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
             if (response.IsSuccessStatusCode)
             {
-                ModelState.AddModelError(string.Empty, "200. Mensaje enviado exitosamente");
+                return true;
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Error del servidor, contacte al administrador");
+                return false;
             }
-            return (RedirectToAction("Chatear", "Chat", new { emisor = messagemodel.Emisor , receptor = messagemodel.Receptor}));
+           
         }
     }
 }

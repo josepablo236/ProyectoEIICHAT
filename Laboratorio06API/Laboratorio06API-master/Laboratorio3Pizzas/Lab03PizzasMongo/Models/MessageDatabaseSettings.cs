@@ -8,13 +8,13 @@ namespace UsersAPI.Models
         public class MessageDatabaseSettings : IMessageDatabaseSettings
         {
             public string MessageCollectionName { get; set; }
-            public string ConnectionString { get; set; }
-            public string DatabaseName { get; set; }
+            public string MConnectionString { get; set; }
+            public string MDatabaseName { get; set; }
         }
         public interface IMessageDatabaseSettings
         {
             string MessageCollectionName { get; set; }
-            string ConnectionString { get; set; }
-            string DatabaseName { get; set; }
+            string MConnectionString { get; set; }
+            string MDatabaseName { get; set; }
         }
 }
