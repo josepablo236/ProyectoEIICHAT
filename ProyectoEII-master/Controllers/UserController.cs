@@ -40,7 +40,6 @@ namespace ProyectoEII.Controllers
             {
                 EspiralController espiral = new EspiralController();
                 EspiralViewModel modelespiral = new EspiralViewModel();
-
                 modelespiral.TamañoM = 5;
                 modelespiral.TamañoN = 5;
                 modelespiral.DireccionRecorrido = "vertical";

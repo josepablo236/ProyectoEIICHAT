@@ -15,9 +15,35 @@ namespace FrontMVC.Controllers
         {
             _logger = logger;
         }
-        public IActionResult Index()
+        public IActionResult IndexMessages(IndexMessagesViewModel modelView)
         {
-            return View();
+            var model = new IndexMessagesViewModel();
+            model.listMessage = new List<MessagesViewModel>();
+            if (string.IsNullOrEmpty(modelView.Busqueda))
+            {
+                return View(model);
+            }
+            else
+            {
+                HttpResponseMessage responseMessages = GlobalVariables.WebApiClient.GetAsync("Message").Result;
+                if (responseMessages.IsSuccessStatusCode)
+                {
+                    var listMessage = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
+                    foreach (var item in listMessage)
+                    {
+                        if (item.Message_.Contains(modelView.Busqueda) && (modelView.Usuario == item.Emisor || modelView.Usuario == item.Receptor))
+                        {
+                            model.listMessage.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
+                }
+                model.Busqueda = modelView.Busqueda;
+                return View(model);
+            }
         }
         public IActionResult Chat(string emisor, string receptor, string Message)
         {

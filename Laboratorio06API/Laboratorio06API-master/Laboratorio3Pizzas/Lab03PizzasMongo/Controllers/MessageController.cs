@@ -43,5 +43,11 @@ namespace UsersAPI.Controllers
             }
             return BadRequest(ModelState);
         }
+
+        [HttpGet]
+        public IEnumerable<Message> Get()
+        {
+            return _messageService.GetAll();
+        }
     }
 }
