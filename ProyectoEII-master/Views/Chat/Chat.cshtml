@@ -14,7 +14,7 @@
         .group {
             padding: 13px;
             border-radius: 12px;
-            background: rgb(57, 125, 192);
+            background: #000000;
             margin: 5px 0px;
             font-weight: bolder;
             color: black;
@@ -34,18 +34,19 @@
             padding: 13px;
             border-radius: 12px;
             width: 50%;
-            background: #85C1E9;
+            background: #000099;
             margin: 6px 4px;
         }
 
         .chat_main {
-            background-color: #957bbe;
+            background-color: #FFFFFF;
             height: 520;
             padding: 0px;
         }
 
         .group_main {
-            background-color: #85C1E9;
+            background-color: #000000;
+            color: white;
         }
     </style>
 </head>
@@ -54,19 +55,19 @@
 {
     @Html.AntiForgeryToken()
 
-        <h3 class="text-center">Welcome</h3>
+        <h3 class="text-center">Bienvenido</h3>
         <div class="container" style="background-color: grey;">
             <div class="row">
                 <div class="col-md-2 less_padding">
                     <div class="col group_main">
-                        <div class="text-center"> Groups </div>
+                        <div class="text-center"> Usuarios </div>
                         <div clsss="row" style="height: 500px;overflow: scroll;" id="groups">
                             <!-- <AQUI AGREGAMOS USUARIO, </div> -->
                             <table class="table">
                                 @foreach (var item in Model.Users)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="color:#FFFFFF">
                                             @Html.DisplayFor(modelItem => item.User_)
                                         </td>
                                         <td>
@@ -74,6 +75,9 @@
                                         </td>
                                     </tr>
                                 }
+                            <tr>
+                                <input type="button" value="Buscar Mensajes" onclick="location.href='@Url.Action("IndexMessages", "Chat", new { usuario = Model.ActualUser , SearchString = "" })'" />
+                            </tr>
                             </table>
                         </div>
 
@@ -87,28 +91,26 @@
                             <!-- <AQUI AGREGAMOS MENSAJESHello, </div> -->
                             @if (Model.Messages != null && Model.Messages.Count > 0)
                             {
-                                <table class="table">
-                                    @foreach (var item in Model.Messages)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Message_)
-                                            </td>
-                                        </tr>
-                                    }
-                                </table>
+                            <table class="table">
+                                @foreach (var item in Model.Messages)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Message_)
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
                             }
                         </div>
-                        
                             <div class="row container" style="margin-left: 3px;">
                                 <div class="col-md-9 col-sm-9 less_padding">
-                                    <textarea  rows="1" id="Message" name="Message"></textarea>
+                                    <textarea  cols="70" rows="1" id="Message" name="Message"></textarea>
                                 </div>
                                 <div class="col-md-3 col-sm-3 less_padding">
-                                    <button type="submit" class="btn btn-default"  style=" position: absolute;" id="SendMessage" >Send Message</button>
+                                    <button type="submit" class="btn btn-primary"  style=" position: absolute;" id="SendMessage" >Enviar mensaje</button>
                                 </div>
                             </div>
-                       
                     </div>
                 </div>
             </div>

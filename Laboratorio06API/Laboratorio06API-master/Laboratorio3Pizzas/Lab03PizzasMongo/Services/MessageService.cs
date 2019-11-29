@@ -17,6 +17,11 @@ namespace UsersAPI.Services
             collection = database.GetCollection<Message>(settings.MessageCollectionName);
         }
 
+        public List<Message> GetAll()
+        {
+            return collection.Find(x => true).ToList();
+        }
+
         public List<Message> GetMessage(string emisor, string receptor)
         {
             var list1 = collection.Find<Message>(x => x.Emisor == emisor && x.Receptor == receptor).ToList();
