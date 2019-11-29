@@ -13,10 +13,10 @@ namespace FrontMVC
         public static HttpClient WebApiClientJWT = new HttpClient();
         static GlobalVariables()
         {
-            WebApiClient.BaseAddress = new Uri("http://localhost:50859//api/");
+            WebApiClient.BaseAddress = new Uri("http://localhost:56566//api/");
             WebApiClient.DefaultRequestHeaders.Clear();
             WebApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            WebApiClientJWT.BaseAddress = new Uri("http://localhost:50858/api/");
+            WebApiClientJWT.BaseAddress = new Uri("http://localhost:56568/api/");
             WebApiClientJWT.DefaultRequestHeaders.Clear();
             WebApiClientJWT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

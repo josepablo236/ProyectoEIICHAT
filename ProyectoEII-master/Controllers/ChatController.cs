@@ -92,7 +92,16 @@ namespace FrontMVC.Controllers
           
         }
 
+        public IActionResult UploadFile()
+        {
+            return View();
+        }
 
+       [HttpPost] 
+       public IActionResult UploadFile(string file)
+        {
+            return View();
+        }
         public bool SendMessage(string Message, string emisor, string receptor)
         {
             MessagesViewModel messagemodel = new MessagesViewModel();
