@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProyectoEII.Models;
-using Laboratorio2.Controllers;
 using Laboratorio2.Models;
+using Laboratorio2.Cifrado;
 using System.Net.Http;
 using FrontMVC;
 using System.Threading;
@@ -38,7 +38,9 @@ namespace ProyectoEII.Controllers
             }
             else
             {
-                EspiralController espiral = new EspiralController();
+                CifradoSDES cifrado = new CifradoSDES();
+                cifrado.Cifrar();
+                cifrado.Descifrado();
                 EspiralViewModel modelespiral = new EspiralViewModel();
                 modelespiral.TamañoM = 5;
                 modelespiral.TamañoN = 5;
