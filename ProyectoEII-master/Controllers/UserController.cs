@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProyectoEII.Models;
 using Laboratorio2.Models;
-using Laboratorio2.Cifrado;
 using System.Net.Http;
 using FrontMVC;
 using System.Threading;
 using System.Threading.Tasks;
+using Laboratorio2.Controllers;
 
 namespace ProyectoEII.Controllers
 {
@@ -38,9 +38,7 @@ namespace ProyectoEII.Controllers
             }
             else
             {
-                CifradoSDES cifrado = new CifradoSDES();
-                cifrado.Cifrar();
-                cifrado.Descifrado();
+                EspiralController espiral = new EspiralController();
                 EspiralViewModel modelespiral = new EspiralViewModel();
                 modelespiral.TamañoM = 5;
                 modelespiral.TamañoN = 5;

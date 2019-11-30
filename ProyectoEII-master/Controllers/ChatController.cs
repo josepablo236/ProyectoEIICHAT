@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using ProyectoEII.Models;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Laboratorio_1.Controllers;
+using Laboratorio_1.Models;
 
 namespace FrontMVC.Controllers
 {
@@ -94,6 +97,8 @@ namespace FrontMVC.Controllers
 
         public IActionResult UploadFile()
         {
+            HomeController home = new HomeController();
+            home.Compresion_Descompresion_LZW();
             return View();
         }
 
