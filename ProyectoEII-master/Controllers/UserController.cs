@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProyectoEII.Models;
 using Laboratorio2.Models;
-using Laboratorio2.Cifrado;
 using System.Net.Http;
 using FrontMVC;
 using System.Threading;
 using System.Threading.Tasks;
+using Laboratorio2.Controllers;
 
 namespace ProyectoEII.Controllers
 {
@@ -38,20 +37,14 @@ namespace ProyectoEII.Controllers
             }
             else
             {
-                CifradoSDES cifrado = new CifradoSDES();
-                cifrado.Cifrar();
-                cifrado.Descifrado();
-                EspiralViewModel modelespiral = new EspiralViewModel();
-                modelespiral.TamañoM = 5;
-                modelespiral.TamañoN = 5;
+                var espiral = new EspiralController();
+                var modelespiral = new EspiralViewModel();
+                modelespiral.TamañoM = 8;
+                modelespiral.TamañoN = 8;
                 modelespiral.DireccionRecorrido = "vertical";
-                List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
-                string passencoded = string.Join(",", passencoded1);
-                newuser.Password = passencoded;
-
+                newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
                 cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "|currenttoken" + rn.Next(2, 99);
-
-                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
+                var response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return (RedirectToAction("Chat", "Chat", new { emisor = newuser.User_}));
@@ -66,7 +59,7 @@ namespace ProyectoEII.Controllers
 
         public IActionResult CreateAccount(string user, string pass)
         {
-            UserViewModel newuser = new UserViewModel();
+            var newuser = new UserViewModel();
             newuser.User_ = user;
             newuser.Password = pass;
 
@@ -76,19 +69,14 @@ namespace ProyectoEII.Controllers
         [HttpPost]
         public ViewResult CreateAccount(UserViewModel newuser)
         {
-            EspiralController espiral = new EspiralController();
-            EspiralViewModel modelespiral = new EspiralViewModel();
-
-            modelespiral.TamañoM = 5;
-            modelespiral.TamañoN = 5;
+            var espiral = new EspiralController();
+            var modelespiral = new EspiralViewModel();
+            modelespiral.TamañoM = 8;
+            modelespiral.TamañoN = 8;
             modelespiral.DireccionRecorrido = "vertical";
-            List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
-            string passencoded = string.Join(",", passencoded1);
-            newuser.Password = passencoded;
-
+            newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
             cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
-
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("User", newuser).Result;
+            var response = GlobalVariables.WebApiClient.PostAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
                 ModelState.AddModelError(string.Empty, "200. Usuario creado exitosamente");
@@ -102,7 +90,7 @@ namespace ProyectoEII.Controllers
 
         public IActionResult Forgot(string user, string pass)
         {
-            UserViewModel newuser = new UserViewModel();
+            var newuser = new UserViewModel();
             newuser.User_ = user;
             newuser.Password = pass;
             return View(newuser);
@@ -111,19 +99,14 @@ namespace ProyectoEII.Controllers
         [HttpPost]
         public ViewResult Forgot(UserViewModel newuser)
         {
-            EspiralController espiral = new EspiralController();
-            EspiralViewModel modelespiral = new EspiralViewModel();
-
-            modelespiral.TamañoM = 5;
-            modelespiral.TamañoN = 5;
+            var espiral = new EspiralController();
+            var modelespiral = new EspiralViewModel();
+            modelespiral.TamañoM = 8;
+            modelespiral.TamañoN = 8;
             modelespiral.DireccionRecorrido = "vertical";
-            List<string> passencoded1 = espiral.Cifrado(modelespiral, newuser.Password);
-            string passencoded = string.Join(",", passencoded1);
-            newuser.Password = passencoded;
-
+            newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
             cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
-
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("User", newuser).Result;
+            var response = GlobalVariables.WebApiClient.PutAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
                 ModelState.AddModelError(string.Empty, "200. Contraseña actualizada exitosamente");
@@ -146,7 +129,7 @@ namespace ProyectoEII.Controllers
                 {
                     if (cadena != null)
                     {
-                        HttpResponseMessage response = GlobalVariables.WebApiClientJWT.GetAsync("JWT/" + cadena).Result;
+                        var response = GlobalVariables.WebApiClientJWT.GetAsync("JWT/" + cadena).Result;
                         if (response.IsSuccessStatusCode)
                         {
                             if (currenttoken == null)
@@ -158,12 +141,12 @@ namespace ProyectoEII.Controllers
                             {
                                 if (currenttoken != (response.Content.ReadAsAsync<string>().Result))
                                 {
-                                    //matamos la sesión jajajaja                                 
+                                    RedirectToAction("Login", "User");
                                 }
                             }
                         }
                     }
-                    await Task.Delay(10000, cancellationToken);
+                    await Task.Delay(1000, cancellationToken);
                     if (cancellationToken.IsCancellationRequested)
                         break;
                 }
