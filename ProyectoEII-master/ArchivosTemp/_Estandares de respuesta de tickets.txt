@@ -1,0 +1,56 @@
+Actualización de tipo de problema, descripción y país. 
+----------------------------------------------------------------------------------------------------------------------------------------------
+En este momento se realiza una llamada telefónica al cliente. Al número...
+----------------------------------------------------------------------------------------------------------------------------------------------
+Tipo de Problema.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Buenos días, me intente comunicar por medio de llamada telefónica pero no obtuve respuesta, podría indicarme en que horario puedo contactarlo.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Buenos días, me intente comunicar por medio de llamada telefónica, me comentan que no se encuentra en este momento, por favor indicarme en que horario puedo contactarlo. 
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se realizaron # llamadas y no se obtuvo respuesta.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se ha realizado una conexión remota y llamada telefónica. Se determina que.....
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se realizó una llamada telefónica y se confirma que el incidente fue solventado
+----------------------------------------------------------------------------------------------------------------------------------------------
+Puedo dar por finalizado/resuelto el incidente. 
+Su incidente ya fue solventado/resuelto. 
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se confirma el correcto ingreso al portal por lo cual se da por solventado el incidente. 
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se da por finalizado el requerimiento, en caso de presentarse otro inconveniente o 
+consulta, por favor no dude en proceder a la apertura de un nuevo ticket, estamos a la orden.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Se procederá a realizar pruebas internas para poder brindar una solución al incidente.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Documentación del incidente: Problema, escenario, causa y solución.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Problema:
+
+Escenario:
+
+Causa:
+
+Solución:
+----------------------------------------------------------------------------------------------------------------------------------------------
+Problema: Creación de S-user.
+
+Escenario: Se crea el S-User para tener acceso a los portales de SAP.
+
+Causa: Solicitud de S-User. 
+
+Solución: 
+Se solicita el S-User a SAP.
+Al contar con las credenciales le son brindadas al cliente. 
+Se adjuntan links que pueden ser de ayuda para el cliente.
+Confirmar ingreso al portal.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Select 
+	t0.ItemCode,
+	COUNT(t0.ItemCode)
+
+from OITW t0
+INNER JOIN OWHS t1 ON t0.WhsCode=t1.WhsCode
+where  t1.Inactive='N'
+GROUP BY t0.ItemCode

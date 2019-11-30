@@ -38,10 +38,13 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Laboratorio 1">
-      <HintPath>..\..\..\..\Downloads\Laboratorio-1-ED2-Segunda-Entrega (2)\Laboratorio-1-ED2-Segunda-Entrega\Laboratorio 1\bin\Laboratorio 1.dll</HintPath>
+      <HintPath>Laboratorio 1.dll</HintPath>
     </Reference>
     <Reference Include="Laboratorio2">
       <HintPath>..\Laboratorio2.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ArchivosTemp\" />
   </ItemGroup>
 </Project>
