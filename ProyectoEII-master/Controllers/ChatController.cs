@@ -17,7 +17,7 @@ namespace FrontMVC.Controllers
     public class ChatController : Controller
     {
         Random rn = new Random();
-        public string currenttoken;
+        public static string currenttoken;
         private readonly IHostingEnvironment _env;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<ChatController> _logger;
@@ -66,7 +66,7 @@ namespace FrontMVC.Controllers
         }
         public IActionResult Chat(string emisor, string receptor, string Message)
         {
-            StartTimer();
+           
             receptorg = receptor;
             emisorg = emisor;
             var list = new List<string>();
@@ -195,7 +195,7 @@ namespace FrontMVC.Controllers
             messagemodel.Receptor = receptorg;
             messagemodel.File = pathPrueba;
             messagemodel.Date = DateTime.Now;
-            cadena = emisorg.ToString() + "|" + receptorg.ToString() + "|currenttokennnn" + rn.Next(2, 99);
+            var cadena = emisorg.ToString() + "|" + receptorg.ToString() + "|currenttokennnn" + rn.Next(2, 99);
             var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -223,8 +223,8 @@ namespace FrontMVC.Controllers
                 modelespiral.DireccionRecorrido = "vertical";
                 messagemodel.Message_ = espiral.Cifrado(modelespiral, Message);
                 messagemodel.Date = DateTime.Now;
-                cadena = emisor.ToString() + "|" + receptor.ToString() + "|currenttokennnn" + rn.Next(2, 99);
-                StartTimer();
+                var cadena = emisor.ToString() + "|" + receptor.ToString() + "|currenttokennnn" + rn.Next(2, 99);
+                //StartTimer();
                 var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -242,9 +242,6 @@ namespace FrontMVC.Controllers
         }
         public async Task StartTimer()
         {
-            await Task.Run(async () =>
-            {
-
                 while (true)
                 {
                     if (cadena != null)
@@ -262,14 +259,15 @@ namespace FrontMVC.Controllers
                                 if (currenttoken != (response.Content.ReadAsAsync<string>().Result))
                                 {
                                     RedirectToAction("Login", "User");
+                                break;
                                 }
                             }
                         }
                     }
-                    await Task.Delay(1000);
+                    await Task.Delay(100);
                     break;
                 }
-            });
+           
         }
     }
 }

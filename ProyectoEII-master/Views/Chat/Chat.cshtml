@@ -49,6 +49,7 @@
             color: white;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     @using (Html.BeginForm())
@@ -98,7 +99,7 @@
                                                 @Html.DisplayFor(modelItem => item.Message_)
                                                 @if (item.File != null)
                                                 {
-                                                @Html.ActionLink(item.File, "Descifrar", "Chat", new { path = item.File })}
+                                                    @Html.ActionLink(item.File, "Descifrar", "Chat", new { path = item.File })}
                                             </td>
                                         </tr>
                                     }
@@ -113,7 +114,7 @@
                                 <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage">Enviar mensaje</button>
                             </div>
                             <div class="col-md-3 col-sm-3 less_padding">
-                          @Html.ActionLink("SendFile", "UploadFile", "Chat", new { emisor = Model.ActualUser }) 
+                          @Html.ActionLink("SendFile", "UploadFile", "Chat", new { emisor = Model.ActualUser })
                             </div>
                         </div>
                     </div>
@@ -154,9 +155,9 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+                        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+                        <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
