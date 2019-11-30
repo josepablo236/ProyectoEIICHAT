@@ -3,26 +3,14 @@
     ViewData["Title"] = "IndexMessages";
 }
 
-<h1>IndexMessages</h1>
-@*<form asp-controller="Chat" asp-action="IndexMessages" method="get">
-        <p>Busqueda de mensajes</p>
-        <p>
-            Usuario: <input type="text" name="text" value="@Model.Usuario" />
-            Nombre: <input type="text" name="SearchString" value="@ViewBag.SearchString" />
-            <input type="submit" value="Search" />
-        </p>
-    </form>*@
+<h1>Buscador de mensajes</h1>
 @using (Html.BeginForm("IndexMessages", "Chat"))
 {
     <p>
         Usuario: @Html.TextBoxFor(x => x.Usuario)
         Mensaje: @Html.TextBoxFor(x => x.Busqueda)
     </p>
-        <button type="submit">Enviar</button>
-
-        @*< input type = "button"
-            value = "Buscar"
-            onclick = "location.href='@Url.Action("IndexMessages", "Chat", new { usuario = @Model.Usuario, SearchString = @ViewBag.SearchString })'" /> *@
+        <button type="submit">Buscar Mensaje</button>
  }
     </p>
     <table class="table">

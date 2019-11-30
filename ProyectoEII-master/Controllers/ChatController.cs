@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProyectoEII.Models;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using Laboratorio2.Models;
+using Laboratorio2.Controllers;
 
 namespace FrontMVC.Controllers
 {
@@ -25,12 +27,18 @@ namespace FrontMVC.Controllers
             }
             else
             {
-                HttpResponseMessage responseMessages = GlobalVariables.WebApiClient.GetAsync("Message").Result;
+                var espiral = new EspiralController();
+                var modelespiral = new EspiralViewModel();
+                modelespiral.TamañoM = 8;
+                modelespiral.TamañoN = 8;
+                modelespiral.DireccionRecorrido = "vertical";
+                var responseMessages = GlobalVariables.WebApiClient.GetAsync("Message").Result;
                 if (responseMessages.IsSuccessStatusCode)
                 {
                     var listMessage = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
                     foreach (var item in listMessage)
                     {
+                        item.Message_ = espiral.Descifrado(modelespiral, item.Message_.ToString());
                         if (item.Message_.Contains(modelView.Busqueda) && (modelView.Usuario == item.Emisor || modelView.Usuario == item.Receptor))
                         {
                             model.listMessage.Add(item);
@@ -47,16 +55,21 @@ namespace FrontMVC.Controllers
         }
         public IActionResult Chat(string emisor, string receptor, string Message)
         {
-            List<UserViewModel> userslist;
-            MessagesUsersViewModel usermessages = new MessagesUsersViewModel();
-            MessagesViewModel messages = new MessagesViewModel();
+            var list = new List<string>();
+            var list2 = new List<string>();
+            var espiral = new EspiralController();
+            var modelespiral = new EspiralViewModel();
+            modelespiral.TamañoM = 15;
+            modelespiral.TamañoN = 15;
+            modelespiral.DireccionRecorrido = "vertical";
+            var usermessages = new MessagesUsersViewModel();
+            var messages = new MessagesViewModel();
             if (Message == null)
             {
                 HttpResponseMessage responseUsers = GlobalVariables.WebApiClient.GetAsync("User").Result;
                 if (responseUsers.IsSuccessStatusCode)
                 {
-                    userslist = responseUsers.Content.ReadAsAsync<List<UserViewModel>>().Result;
-                    usermessages.Users = userslist;
+                    usermessages.Users = responseUsers.Content.ReadAsAsync<List<UserViewModel>>().Result;
                     usermessages.ActualUser = emisor;
                 }
                 else
@@ -66,10 +79,15 @@ namespace FrontMVC.Controllers
                 if (receptor != null)
                 {
                     var cadena = emisor + "|" + receptor;
-                    HttpResponseMessage responseMessages = GlobalVariables.WebApiClient.GetAsync("Message/" + cadena.ToString()).Result;
+                    var responseMessages = GlobalVariables.WebApiClient.GetAsync("Message/" + cadena.ToString()).Result;
                     if (responseMessages.IsSuccessStatusCode)
                     {
-                        usermessages.Messages = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
+                        var listMessage = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
+                        foreach (var item in listMessage)
+                        {
+                            item.Message_ = espiral.Descifrado(modelespiral, item.Message_.ToString());
+                        }
+                        usermessages.Messages = listMessage;
                     }
                     else
                     {
@@ -86,7 +104,8 @@ namespace FrontMVC.Controllers
                     return RedirectToAction("Chat", new { emisor = emisor, receptor = receptor });
                 }
                 else
-                { return View(usermessages); 
+                { 
+                    return View(usermessages); 
                 }
             }
           
@@ -104,22 +123,32 @@ namespace FrontMVC.Controllers
         }
         public bool SendMessage(string Message, string emisor, string receptor)
         {
-            MessagesViewModel messagemodel = new MessagesViewModel();
-            messagemodel.Emisor = emisor;
-            messagemodel.Receptor = receptor;
-            //Cifrar mensaje y asignarlo a la variable del modelo
-            messagemodel.Message_ = Message;
-            messagemodel.Date = DateTime.Now;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
-            if (response.IsSuccessStatusCode)
+            if(receptor != null)
             {
-                return true;
+                var messagemodel = new MessagesViewModel();
+                messagemodel.Emisor = emisor;
+                messagemodel.Receptor = receptor;
+                var espiral = new EspiralController();
+                var modelespiral = new EspiralViewModel();
+                modelespiral.TamañoM = 15;
+                modelespiral.TamañoN = 15;
+                modelespiral.DireccionRecorrido = "vertical";
+                messagemodel.Message_ = espiral.Cifrado(modelespiral, Message);
+                messagemodel.Date = DateTime.Now;
+                var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
-           
         }
     }
 }
