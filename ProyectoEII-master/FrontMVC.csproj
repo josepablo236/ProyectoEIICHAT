@@ -43,5 +43,8 @@
     <Reference Include="Laboratorio2">
       <HintPath>..\Laboratorio2.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\Laboratorio-1-ED2-Segunda-Entrega\Laboratorio 1\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

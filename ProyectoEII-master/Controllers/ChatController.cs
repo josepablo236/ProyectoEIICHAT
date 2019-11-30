@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Laboratorio_1.Controllers;
 using Laboratorio_1.Models;
 
+
 namespace FrontMVC.Controllers
 {
-    public class ChatController : Controller
+    public class ChatController : Microsoft.AspNetCore.Mvc.Controller
     {
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<ChatController> _logger;
@@ -97,14 +98,53 @@ namespace FrontMVC.Controllers
 
         public IActionResult UploadFile()
         {
-            HomeController home = new HomeController();
-            home.Compresion_Descompresion_LZW();
             return View();
         }
 
        [HttpPost] 
-       public IActionResult UploadFile(string file)
+       public IActionResult UploadFile(IFormFile file)
         {
+            HomeController home = new HomeController();
+            CompresionLZW compresion = new CompresionLZW();
+            if (file != null)
+            {
+                string[] nombreArchivo = file.FileName.Split('.'); 
+                try
+                {
+                    //if (nombreArchivo[1] == "txt")
+                    //{
+                    //    CompresionLZW H = new CompresionLZW();
+                    //    string path = Server.MapPath("~/ArchivosTmp/");
+                    //    string pathPrueba = path + nombreArchivo[0];
+                    //    path = path + ArchivoEntrada.FileName;
+                    //    ArchivoEntrada.SaveAs(path);
+
+
+                    //    H.Compresion(path, pathPrueba);
+                    //    return File(pathPrueba, "lzw", (nombreArchivo[0] + ".lzw"));
+                    //}
+                    //else if (nombreArchivo[1] == "lzw")
+                    //{
+                    //    DescompresionLZW H = new DescompresionLZW();
+                    //    string path = Server.MapPath("~/ArchivosTmp/");
+                    //    string pathPrueba = path + nombreArchivo[0];
+                    //    path = path + ArchivoEntrada.FileName;
+                    //    ArchivoEntrada.SaveAs(path);
+
+                    //    H.Descompresion(pathPrueba, path);
+                    //    ViewBag.ok = "Proceso completado :)";
+                    //    return File(pathPrueba, "txt", (nombreArchivo[0] + ".txt"));
+                    //}
+                }
+                catch
+                {
+                    ViewBag.Error02 = "Ha ocurrido un error con su archivo";
+                }
+            }
+            else
+                ViewBag.Error01 = "No ha ingresado un archivo";
+
+          
             return View();
         }
         public bool SendMessage(string Message, string emisor, string receptor)
@@ -112,7 +152,6 @@ namespace FrontMVC.Controllers
             MessagesViewModel messagemodel = new MessagesViewModel();
             messagemodel.Emisor = emisor;
             messagemodel.Receptor = receptor;
-            //Cifrar mensaje y asignarlo a la variable del modelo
             messagemodel.Message_ = Message;
             messagemodel.Date = DateTime.Now;
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
