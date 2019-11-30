@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProyectoEII.Models;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+<<<<<<< HEAD
 using Laboratorio2.Models;
 using Laboratorio2.Controllers;
 using System.Threading.Tasks;
@@ -12,10 +13,16 @@ using System.IO;
 using Laboratorio_1.Models;
 using Laboratorio_1.Controllers;
 using Microsoft.AspNetCore.Hosting;
+=======
+using Microsoft.AspNetCore.Http;
+using Laboratorio_1.Controllers;
+using Laboratorio_1.Models;
+
+>>>>>>> f21117e400782dc5234135987522b3749add4c4b
 
 namespace FrontMVC.Controllers
 {
-    public class ChatController : Controller
+    public class ChatController : Microsoft.AspNetCore.Mvc.Controller
     {
         Random rn = new Random();
         public string currenttoken;
@@ -125,6 +132,7 @@ namespace FrontMVC.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
         [HttpPost]
         public async Task<IActionResult> Index(List<IFormFile> files)
         {
@@ -168,13 +176,70 @@ namespace FrontMVC.Controllers
                 ViewBag.ok = "Proceso completado :)";
                 return File(pathPrueba, "txt", (nombreArchivo[0] + ".txt"));
             }
+=======
+
+       [HttpPost] 
+       public IActionResult UploadFile(IFormFile file)
+        {
+            HomeController home = new HomeController();
+            CompresionLZW compresion = new CompresionLZW();
+            if (file != null)
+            {
+                string[] nombreArchivo = file.FileName.Split('.'); 
+                try
+                {
+                    //if (nombreArchivo[1] == "txt")
+                    //{
+                    //    CompresionLZW H = new CompresionLZW();
+                    //    string path = Server.MapPath("~/ArchivosTmp/");
+                    //    string pathPrueba = path + nombreArchivo[0];
+                    //    path = path + ArchivoEntrada.FileName;
+                    //    ArchivoEntrada.SaveAs(path);
+
+
+                    //    H.Compresion(path, pathPrueba);
+                    //    return File(pathPrueba, "lzw", (nombreArchivo[0] + ".lzw"));
+                    //}
+                    //else if (nombreArchivo[1] == "lzw")
+                    //{
+                    //    DescompresionLZW H = new DescompresionLZW();
+                    //    string path = Server.MapPath("~/ArchivosTmp/");
+                    //    string pathPrueba = path + nombreArchivo[0];
+                    //    path = path + ArchivoEntrada.FileName;
+                    //    ArchivoEntrada.SaveAs(path);
+
+                    //    H.Descompresion(pathPrueba, path);
+                    //    ViewBag.ok = "Proceso completado :)";
+                    //    return File(pathPrueba, "txt", (nombreArchivo[0] + ".txt"));
+                    //}
+                }
+                catch
+                {
+                    ViewBag.Error02 = "Ha ocurrido un error con su archivo";
+                }
+            }
+            else
+                ViewBag.Error01 = "No ha ingresado un archivo";
+
+          
+>>>>>>> f21117e400782dc5234135987522b3749add4c4b
             return View();
 
         }
 
         public bool SendMessage(string Message, string emisor, string receptor)
         {
+<<<<<<< HEAD
             if(receptor != null)
+=======
+            MessagesViewModel messagemodel = new MessagesViewModel();
+            messagemodel.Emisor = emisor;
+            messagemodel.Receptor = receptor;
+            messagemodel.Message_ = Message;
+            messagemodel.Date = DateTime.Now;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
+            if (response.IsSuccessStatusCode)
+>>>>>>> f21117e400782dc5234135987522b3749add4c4b
             {
                 var messagemodel = new MessagesViewModel();
                 messagemodel.Emisor = emisor;

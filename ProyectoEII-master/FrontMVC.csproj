@@ -38,10 +38,17 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Laboratorio 1">
+<<<<<<< HEAD
       <HintPath>..\Laboratorio1.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\Downloads\Laboratorio-1-ED2-Segunda-Entrega (2)\Laboratorio-1-ED2-Segunda-Entrega\Laboratorio 1\bin\Laboratorio 1.dll</HintPath>
+>>>>>>> f21117e400782dc5234135987522b3749add4c4b
     </Reference>
     <Reference Include="Laboratorio2">
       <HintPath>..\Laboratorio2.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\Laboratorio-1-ED2-Segunda-Entrega\Laboratorio 1\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

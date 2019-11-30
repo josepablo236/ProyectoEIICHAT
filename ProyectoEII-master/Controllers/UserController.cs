@@ -37,10 +37,17 @@ namespace ProyectoEII.Controllers
             }
             else
             {
+<<<<<<< HEAD
                 var espiral = new EspiralController();
                 var modelespiral = new EspiralViewModel();
                 modelespiral.TamañoM = 8;
                 modelespiral.TamañoN = 8;
+=======
+                EspiralController espiral = new EspiralController();
+                EspiralViewModel modelespiral = new EspiralViewModel();
+                modelespiral.TamañoM = 5;
+                modelespiral.TamañoN = 5;
+>>>>>>> f21117e400782dc5234135987522b3749add4c4b
                 modelespiral.DireccionRecorrido = "vertical";
                 newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
                 cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "|currenttoken" + rn.Next(2, 99);
