@@ -134,12 +134,12 @@ namespace FrontMVC.Controllers
         public IActionResult Descifrar(string path)
         {
             string[] nombreArchivo = path.Split('/');
-            string path2 = nombreArchivo[0] + "/" + nombreArchivo[1] ;
+            string path2 = nombreArchivo[0] + "/" + nombreArchivo[1] + "/";
                 DescompresionLZW H = new DescompresionLZW();
-                string pathPrueba = path+"2";
-                H.Descompresion(pathPrueba, path2);
-            return File(pathPrueba, "txt", (nombreArchivo[1] + ".txt"));
-          //  return RedirectToAction("Chat", new { emisor = emisorg, receptor = receptorg });
+                string pathPrueba = path;
+            // H.Descompresion(pathPrueba, path2);
+            return File(pathPrueba+".txt", "text/plain", (nombreArchivo[1] + ".txt"));
+            //  return RedirectToAction("Chat", new { emisor = emisorg, receptor = receptorg });
         }
         public IActionResult UploadFile()
         {
@@ -164,7 +164,7 @@ namespace FrontMVC.Controllers
                 CompresionLZW H = new CompresionLZW();
                 var path0 = System.IO.Directory.GetCurrentDirectory();
                 path = path0 + "/ArchivosTemp/";
-                pathPrueba = path + nombreArchivo[0];
+                pathPrueba = path + nombreArchivo[0] ;
                 path = path + file.FileName;
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
