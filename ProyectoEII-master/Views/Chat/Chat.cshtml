@@ -96,7 +96,9 @@
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Message_)
-                                                @Html.ActionLink(item.File, "Descifrar", "Chat", new { path= item.File})
+                                                @if (item.File != null)
+                                                {
+                                                @Html.ActionLink(item.File, "Descifrar", "Chat", new { path = item.File })}
                                             </td>
                                         </tr>
                                     }

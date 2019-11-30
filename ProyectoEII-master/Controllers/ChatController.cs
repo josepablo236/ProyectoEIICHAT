@@ -66,6 +66,7 @@ namespace FrontMVC.Controllers
         }
         public IActionResult Chat(string emisor, string receptor, string Message)
         {
+            StartTimer();
             receptorg = receptor;
             emisorg = emisor;
             var list = new List<string>();
@@ -194,7 +195,7 @@ namespace FrontMVC.Controllers
             messagemodel.Receptor = receptorg;
             messagemodel.File = pathPrueba;
             messagemodel.Date = DateTime.Now;
-            cadena = emisorg.ToString() + "|" + receptorg.ToString() + "|currenttoken" + rn.Next(2, 99);
+            cadena = emisorg.ToString() + "|" + receptorg.ToString() + "|currenttokennnn" + rn.Next(2, 99);
             var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -222,7 +223,7 @@ namespace FrontMVC.Controllers
                 modelespiral.DireccionRecorrido = "vertical";
                 messagemodel.Message_ = espiral.Cifrado(modelespiral, Message);
                 messagemodel.Date = DateTime.Now;
-                cadena = emisor.ToString() + "|" + receptor.ToString() + "|currenttoken" + rn.Next(2, 99);
+                cadena = emisor.ToString() + "|" + receptor.ToString() + "|currenttokennnn" + rn.Next(2, 99);
                 StartTimer();
                 var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
                 if (response.IsSuccessStatusCode)

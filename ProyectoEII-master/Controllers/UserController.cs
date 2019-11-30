@@ -44,7 +44,7 @@ namespace ProyectoEII.Controllers
                 modelespiral.TamañoN = 8;
                 modelespiral.DireccionRecorrido = "vertical";
                 newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
-                cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "|currenttoken" + rn.Next(2, 99);
+                cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "|currenttokenn" + rn.Next(99, 999);
                 var response = GlobalVariables.WebApiClient.GetAsync("User/" + cadena.ToString()).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -76,7 +76,7 @@ namespace ProyectoEII.Controllers
             modelespiral.TamañoN = 8;
             modelespiral.DireccionRecorrido = "vertical";
             newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
-            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
+            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttokenn" + rn.Next(99, 999);
             var response = GlobalVariables.WebApiClient.PostAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -106,7 +106,7 @@ namespace ProyectoEII.Controllers
             modelespiral.TamañoN = 8;
             modelespiral.DireccionRecorrido = "vertical";
             newuser.Password = espiral.Cifrado(modelespiral, newuser.Password);
-            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttoken" + rn.Next(2, 99);
+            cadena = newuser.User_.ToString() + "|" + newuser.Password.ToString() + "currenttokenn" + rn.Next(99, 999);
             var response = GlobalVariables.WebApiClient.PutAsJsonAsync("User", newuser).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -147,7 +147,7 @@ namespace ProyectoEII.Controllers
                             }
                         }
                     }
-                    await Task.Delay(1000, cancellationToken);
+                    await Task.Delay(10, cancellationToken);
                     if (cancellationToken.IsCancellationRequested)
                         break;
                 }
