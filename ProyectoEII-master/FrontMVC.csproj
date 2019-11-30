@@ -37,6 +37,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Laboratorio 1">
+      <HintPath>..\Laboratorio1.dll</HintPath>
+    </Reference>
     <Reference Include="Laboratorio2">
       <HintPath>..\Laboratorio2.dll</HintPath>
     </Reference>

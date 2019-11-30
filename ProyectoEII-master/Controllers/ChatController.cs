@@ -6,13 +6,23 @@ using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using Laboratorio2.Models;
 using Laboratorio2.Controllers;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Laboratorio_1.Models;
+using Laboratorio_1.Controllers;
+using Microsoft.AspNetCore.Hosting;
 
 namespace FrontMVC.Controllers
 {
     public class ChatController : Controller
     {
+        Random rn = new Random();
+        public string currenttoken;
+        private readonly IHostingEnvironment _env;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<ChatController> _logger;
+        public string cadena;
         public ChatController(ILogger<ChatController> logger)
         {
             _logger = logger;
@@ -115,12 +125,53 @@ namespace FrontMVC.Controllers
         {
             return View();
         }
-
-       [HttpPost] 
-       public IActionResult UploadFile(string file)
+        [HttpPost]
+        public async Task<IActionResult> Index(List<IFormFile> files)
         {
+            var file = files[0];
+            foreach (var formFile in files)
+            {
+                using (var stream = new FileStream(file.FileName, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+            }
+            string[] nombreArchivo = file.FileName.Split('.');
+
+            if (nombreArchivo[1] == "txt")
+            {
+                CompresionLZW H = new CompresionLZW();
+                string path = _env.WebRootPath +"/ArchivosTemp/";
+                string pathPrueba = path + nombreArchivo[0];
+                path = path + file.FileName;
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+
+                H.Compresion(path, pathPrueba);
+                return File(pathPrueba, "lzw", (nombreArchivo[0] + ".lzw"));
+            }
+            else if (nombreArchivo[1] == "lzw")
+            {
+                DescompresionLZW H = new DescompresionLZW();
+                string path = _env.WebRootPath + "/ArchivosTemp/";
+                string pathPrueba = path + nombreArchivo[0];
+                path = path + file.FileName;
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                H.Descompresion(pathPrueba, path);
+                ViewBag.ok = "Proceso completado :)";
+                return File(pathPrueba, "txt", (nombreArchivo[0] + ".txt"));
+            }
             return View();
+
         }
+
         public bool SendMessage(string Message, string emisor, string receptor)
         {
             if(receptor != null)
@@ -135,6 +186,8 @@ namespace FrontMVC.Controllers
                 modelespiral.DireccionRecorrido = "vertical";
                 messagemodel.Message_ = espiral.Cifrado(modelespiral, Message);
                 messagemodel.Date = DateTime.Now;
+                cadena = emisor.ToString() + "|" + receptor.ToString() + "|currenttoken" + rn.Next(2, 99);
+                StartTimer();
                 var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -149,6 +202,37 @@ namespace FrontMVC.Controllers
             {
                 return false;
             }
+        }
+        public async Task StartTimer()
+        {
+            await Task.Run(async () =>
+            {
+
+                while (true)
+                {
+                    if (cadena != null)
+                    {
+                        HttpResponseMessage response = GlobalVariables.WebApiClientJWT.GetAsync("JWT/" + cadena).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            if (currenttoken == null)
+                            {
+                                currenttoken = (response.Content.ReadAsAsync<string>().Result);
+
+                            }
+                            else
+                            {
+                                if (currenttoken != (response.Content.ReadAsAsync<string>().Result))
+                                {
+                                    RedirectToAction("Login", "User");
+                                }
+                            }
+                        }
+                    }
+                    await Task.Delay(1000);
+                    break;
+                }
+            });
         }
     }
 }
