@@ -1,0 +1,112 @@
+dena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:37.3163|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117750
+2019-11-15 05:58:37.3163|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117750, idObjIntermedia=9888, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117750, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:37.3193|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:37.3193|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:37.3193|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117750, idObjIntermedia=9888, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9888, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:37.3193|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117799, idObjIntermedia=9888, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9888, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:37.5924|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117800creada con exito en SAP
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117800, idObjIntermedia=9890, mensaje=Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117800, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:37.5924|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117800
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:37.5924|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:37.6054|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|CrearPagoRecibido-  Se a iniciado el proceso de creacion de pago recibido
+2019-11-15 05:58:37.6054|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:37.6054|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:37.6054|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:40.0546|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117751
+2019-11-15 05:58:40.0546|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117751, idObjIntermedia=9890, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117751, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:40.0546|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:40.0546|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:40.0546|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117751, idObjIntermedia=9890, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9890, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:40.0546|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117800, idObjIntermedia=9890, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9890, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:40.3296|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117801creada con exito en SAP
+2019-11-15 05:58:40.3296|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117801, idObjIntermedia=9891, mensaje=Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117801, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:40.3296|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117801
+2019-11-15 05:58:40.3296|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:40.3296|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:40.3296|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:40.3346|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:40.3346|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:40.3346|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:40.3346|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|CrearPagoRecibido-  Se a iniciado el proceso de creacion de pago recibido
+2019-11-15 05:58:40.3506|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:40.3506|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:40.3506|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:42.8127|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117752
+2019-11-15 05:58:42.8127|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117752, idObjIntermedia=9891, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117752, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:42.8127|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:42.8127|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:42.8127|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117752, idObjIntermedia=9891, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9891, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:42.8127|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117801, idObjIntermedia=9891, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9891, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:43.0877|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117802creada con exito en SAP
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117802, idObjIntermedia=9892, mensaje=Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117802, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:43.0877|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117802
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:43.0877|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:43.1007|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|CrearPagoRecibido-  Se a iniciado el proceso de creacion de pago recibido
+2019-11-15 05:58:43.1007|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:43.1007|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:43.1007|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:43.1007|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:43.1007|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:43.1157|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.5419|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117753
+2019-11-15 05:58:45.5419|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117753, idObjIntermedia=9892, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117753, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:45.5419|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.5419|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.5419|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117753, idObjIntermedia=9892, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9892, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:45.5419|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117802, idObjIntermedia=9892, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9892, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:45.8179|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117803creada con exito en SAP
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117803, idObjIntermedia=9893, mensaje=Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117803, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:45.8189|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117803
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.8189|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.8189|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|CrearPagoRecibido-  Se a iniciado el proceso de creacion de pago recibido
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:45.8379|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.3040|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117754
+2019-11-15 05:58:48.3040|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117754, idObjIntermedia=9893, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117754, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:48.3040|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.3040|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.3040|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117754, idObjIntermedia=9893, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9893, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:48.3040|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117803, idObjIntermedia=9893, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9893, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:48.5821|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117804creada con exito en SAP
+2019-11-15 05:58:48.5821|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117804, idObjIntermedia=9895, mensaje=Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117804, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:48.5851|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura creada exitosamente con codigo de cliente : CTAS y numero de factura: 300117804
+2019-11-15 05:58:48.5851|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.5851|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.6041|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.6041|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.6041|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.6041|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.6041|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|CrearPagoRecibido-  Se a iniciado el proceso de creacion de pago recibido
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'GetParametroGeneral'...
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:48.6211|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:51.1452|INFO|Igt.Empresa.Service.Otros.PagosRecibidos|Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117755
+2019-11-15 05:58:51.1452|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117755, idObjIntermedia=9895, mensaje=Pago creada exitosamente con codigo de cliente: CTAS y numero de pago: 300117755, tipoTransaccion=SAP, tipoOperacion=Crear
+2019-11-15 05:58:51.1482|INFO|ConexionesSQL.Conexiones|Iniciando ejecución de metodo 'GetSQLConnection'
+2019-11-15 05:58:51.1482|INFO|ConexionesSQL.Conexiones|Finalizando ejecución de metodo 'GetSQLConnection' cadena devuelta=Data Source = localhost,1433; Initial Catalog= PRUEBA_TAS_MAYO; User ID=sa; Password=TplYg3nMs4imCZ+Ao8f+0g==
+2019-11-15 05:58:51.1482|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=13, resultadoTransaccion=Exitoso, idObjSap=300117755, idObjIntermedia=9895, mensaje=SAPDocNumFac actualizada correctamente con id en la intermedia: 9895, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:51.1482|INFO|ConexionesSQL.Conexiones|Ejecutando metodo 'InsertBitacora' con parametros: idTipoObjSap=24, resultadoTransaccion=Exitoso, idObjSap=300117804, idObjIntermedia=9895, mensaje=SAPDocNumRec actualizada correctamente con id en la intermedia : 9895, tipoTransaccion=Intermedia, tipoOperacion=Actualizar
+2019-11-15 05:58:51.4202|INFO|Igt.Empresa.Service.Otros.FacturaDetallada|Factura con numero:300117805creada con e

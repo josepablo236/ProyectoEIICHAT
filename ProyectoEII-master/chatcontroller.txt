@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoEII.Models;
@@ -21,9 +21,7 @@ namespace FrontMVC.Controllers
         private readonly IHostingEnvironment _env;
         private static readonly HttpClient client = new HttpClient();
         private readonly ILogger<ChatController> _logger;
-        public  string cadena;
-        public static string receptorg;
-        public static string emisorg;
+        public string cadena;
         public ChatController(ILogger<ChatController> logger)
         {
             _logger = logger;
@@ -40,8 +38,8 @@ namespace FrontMVC.Controllers
             {
                 var espiral = new EspiralController();
                 var modelespiral = new EspiralViewModel();
-                modelespiral.TamaÃ±oM = 8;
-                modelespiral.TamaÃ±oN = 8;
+                modelespiral.TamañoM = 8;
+                modelespiral.TamañoN = 8;
                 modelespiral.DireccionRecorrido = "vertical";
                 var responseMessages = GlobalVariables.WebApiClient.GetAsync("Message").Result;
                 if (responseMessages.IsSuccessStatusCode)
@@ -58,7 +56,7 @@ namespace FrontMVC.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningÃºn mensaje");
+                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
                 }
                 model.Busqueda = modelView.Busqueda;
                 return View(model);
@@ -66,14 +64,12 @@ namespace FrontMVC.Controllers
         }
         public IActionResult Chat(string emisor, string receptor, string Message)
         {
-            receptorg = receptor;
-            emisorg = emisor;
             var list = new List<string>();
             var list2 = new List<string>();
             var espiral = new EspiralController();
             var modelespiral = new EspiralViewModel();
-            modelespiral.TamaÃ±oM = 15;
-            modelespiral.TamaÃ±oN = 15;
+            modelespiral.TamañoM = 15;
+            modelespiral.TamañoN = 15;
             modelespiral.DireccionRecorrido = "vertical";
             var usermessages = new MessagesUsersViewModel();
             var messages = new MessagesViewModel();
@@ -87,7 +83,7 @@ namespace FrontMVC.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningÃºn usuario");
+                    ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún usuario");
                 }
                 if (receptor != null)
                 {
@@ -96,23 +92,15 @@ namespace FrontMVC.Controllers
                     if (responseMessages.IsSuccessStatusCode)
                     {
                         var listMessage = responseMessages.Content.ReadAsAsync<List<MessagesViewModel>>().Result;
-                        
                         foreach (var item in listMessage)
                         {
-                            if (item.Message_ != null)
-                            {
-                                item.Message_ = espiral.Descifrado(modelespiral, item.Message_.ToString());
-                            }
-                            else
-                            { 
-                                
-                            }
+                            item.Message_ = espiral.Descifrado(modelespiral, item.Message_.ToString());
                         }
                         usermessages.Messages = listMessage;
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "400. No se obtuvo ningÃºn mensaje");
+                        ModelState.AddModelError(string.Empty, "400. No se obtuvo ningún mensaje");
                     }
                 }
                 return View(usermessages);
@@ -131,22 +119,13 @@ namespace FrontMVC.Controllers
             }
           
         }
-        public IActionResult Descifrar(string path)
-        {
-            string[] nombreArchivo = path.Split('/');
-            string path2 = nombreArchivo[0] + "/" + nombreArchivo[1] ;
-                DescompresionLZW H = new DescompresionLZW();
-                string pathPrueba = path+"2";
-                H.Descompresion(pathPrueba, path2);
-            return File(pathPrueba, "txt", (nombreArchivo[1] + ".txt"));
-          //  return RedirectToAction("Chat", new { emisor = emisorg, receptor = receptorg });
-        }
+
         public IActionResult UploadFile()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(List<IFormFile> files, string emisor)
+        public async Task<IActionResult> Index(List<IFormFile> files)
         {
             var file = files[0];
             foreach (var formFile in files)
@@ -157,29 +136,28 @@ namespace FrontMVC.Controllers
                 }
             }
             string[] nombreArchivo = file.FileName.Split('.');
-            string path;
-            string pathPrueba = string.Empty;
+
             if (nombreArchivo[1] == "txt")
             {
                 CompresionLZW H = new CompresionLZW();
                 var path0 = System.IO.Directory.GetCurrentDirectory();
-                path = path0 + "/ArchivosTemp/";
-                pathPrueba = path + nombreArchivo[0];
+                string path = path0 + "/ArchivosTemp/";
+                string pathPrueba = path + nombreArchivo[0];
                 path = path + file.FileName;
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                H.Compresion(path, pathPrueba);
 
+                H.Compresion(path, pathPrueba);
             }
             else if (nombreArchivo[1] == "lzw")
             {
                 DescompresionLZW H = new DescompresionLZW();
                 var path0 = System.IO.Directory.GetCurrentDirectory();
-                path = path0 + "/ArchivosTemp/";
-                pathPrueba = path + nombreArchivo[0];
+                string path = path0 + "/ArchivosTemp/";
+                string pathPrueba = path + nombreArchivo[0];
                 path = path + file.FileName;
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
@@ -188,22 +166,7 @@ namespace FrontMVC.Controllers
 
                 H.Descompresion(pathPrueba, path);
             }
-
-            var messagemodel = new MessagesViewModel();
-            messagemodel.Emisor = emisorg;
-            messagemodel.Receptor = receptorg;
-            messagemodel.File = pathPrueba;
-            messagemodel.Date = DateTime.Now;
-            cadena = emisorg.ToString() + "|" + receptorg.ToString() + "|currenttoken" + rn.Next(2, 99);
-            var response = GlobalVariables.WebApiClient.PostAsJsonAsync("Message", messagemodel).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Chat", "Chat", new { emisor = messagemodel.Emisor, receptor = messagemodel.Receptor });
-            }
-            else 
-            {
-                return RedirectToAction("UploadFile", "Chat");
-            }
+            return View();
 
         }
 
@@ -211,14 +174,13 @@ namespace FrontMVC.Controllers
         {
             if(receptor != null)
             {
-                receptorg = receptor;
                 var messagemodel = new MessagesViewModel();
                 messagemodel.Emisor = emisor;
                 messagemodel.Receptor = receptor;
                 var espiral = new EspiralController();
                 var modelespiral = new EspiralViewModel();
-                modelespiral.TamaÃ±oM = 15;
-                modelespiral.TamaÃ±oN = 15;
+                modelespiral.TamañoM = 15;
+                modelespiral.TamañoN = 15;
                 modelespiral.DireccionRecorrido = "vertical";
                 messagemodel.Message_ = espiral.Cifrado(modelespiral, Message);
                 messagemodel.Date = DateTime.Now;

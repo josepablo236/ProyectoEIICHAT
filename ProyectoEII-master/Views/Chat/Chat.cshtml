@@ -96,6 +96,7 @@
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Message_)
+                                                @Html.ActionLink(item.File, "Descifrar", "Chat", new { path= item.File})
                                             </td>
                                         </tr>
                                     }
@@ -110,7 +111,7 @@
                                 <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage">Enviar mensaje</button>
                             </div>
                             <div class="col-md-3 col-sm-3 less_padding">
-                                <input type="button" value="Subir Archivo" onclick="location.href='@Url.ActionLink("UploadFile", "Chat")'" />
+                          @Html.ActionLink("SendFile", "UploadFile", "Chat", new { emisor = Model.ActualUser }) 
                             </div>
                         </div>
                     </div>
